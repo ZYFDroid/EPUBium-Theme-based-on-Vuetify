@@ -87,7 +87,21 @@
         <v-btn :loading="scanning" :disabled="scanning" @click="scanBook" text>
           <v-icon>mdi-feature-search</v-icon>扫描书籍</v-btn
         >
-        <v-btn text> <v-icon>mdi-cog</v-icon>设定</v-btn>
+        <!-- <v-btn text> <v-icon>mdi-cog</v-icon>设定</v-btn> -->
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on" text>
+              <v-icon>mdi-cog</v-icon>设定
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item @click="about = true">
+              <v-list-item-title
+                ><v-icon>mdi-account</v-icon>关于主题</v-list-item-title
+              >
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
     </v-navigation-drawer>
 
@@ -106,6 +120,31 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <div class="text-center">
+      <v-dialog v-model="about" width="500">
+        <v-card>
+          <v-card-title class="text-h5 grey lighten-2"> 主题信息 </v-card-title>
+
+          <v-card-text>
+            <div></div>
+            <p class="text-h4 text--primary">EPUBium material design 主题包</p>
+            <p>by SwetyCore <a href="https://github.com/SwetyCore">访问他的主页</a></p>
+            <div class="text--primary">
+              此主题基于 <a href="https://vuetify.cn/zh-Hans/">Vuetify</a>制作。
+              主题仓库地址 ：<a href="https://github.com/SwetyCore/EPUBium-Theme-based-on-Vuetify">SwetyCore/EPUBium-Theme-based-on-Vuetify</a>
+              喜欢就点个 Star 吧！
+            </div>
+          </v-card-text>
+
+          <v-divider></v-divider>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="about = false"> 关闭 </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-app>
 </template>
 
@@ -127,6 +166,7 @@ export default {
     folders: [],
     books: [],
     menubarTitle: "",
+    about: false,
   }),
   mounted() {
     axios
