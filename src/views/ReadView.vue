@@ -7,15 +7,14 @@
       <div class="d-flex align-center">
         <v-btn icon @click="drawer = true"><v-icon>mdi-menu</v-icon></v-btn>
       </div>
-      <v-col :cols="2" style="min-width: 300px;">
+      <div :cols="2" style="flex-grow: 1;overflow: hidden;">
         <!-- <div class="text-h5 text-no-wrap text-truncate" style="display: block">&nbsp;{{ BookTitle }}</div>
         <div class="text-subtitle-2 text-no-wrap text-truncate" style="display: block"> -->
-          <div class="text-h5 text-no-wrap" style="">&nbsp;{{ BookTitle }}</div>
+          <div class="text-h6 text-no-wrap" style="">&nbsp;{{ BookTitle }}</div>
         <div class="text-subtitle-2 text-no-wrap" style="">
           &nbsp;{{ "[" + locationPage + "]" + locationChapter }}
         </div>
-      </v-col>
-      <v-spacer></v-spacer>
+      </div>
       <v-btn icon @click="toggleBookmark()"
         ><v-icon v-if="!bookmark">mdi-bookmark-outline</v-icon>
         <v-icon v-else>mdi-bookmark</v-icon></v-btn
@@ -101,7 +100,7 @@
     </v-navigation-drawer>
     <!-- 读书
     {{ uuid }} -->
-    <v-progress-linear
+    <v-progress-linear fixed
       indeterminate
       color="cyan"
       v-show="progressbar"

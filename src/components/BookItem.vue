@@ -1,7 +1,7 @@
 <template>
   <v-card width="140px">
     <v-img
-      :src="cover"
+      :src="'/api/cover/'+uuid"
       class="white--text align-end"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       height="200px"
@@ -23,11 +23,7 @@
 export default {
   name: "BookItem",
   props: ["uuid", "name"],
-  computed: {
-    cover() {
-      return "/api/cover/" + this.uuid;
-    },
-  },
+  
   methods: {
     readbook(uuid) {
       this.$router.push("/read/" + uuid);
