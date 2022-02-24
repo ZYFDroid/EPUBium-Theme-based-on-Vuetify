@@ -21,6 +21,7 @@
           height="100%"
           dense
           v-model="searchKeyword"
+          style="min-width:120px"
         ></v-text-field>
       </v-col>
       <v-btn icon @click="doSearch(searchKeyword)"
@@ -97,7 +98,12 @@
           <v-list>
             <v-list-item @click="about = true">
               <v-list-item-title
-                ><v-icon>mdi-account</v-icon>关于主题</v-list-item-title
+                ><v-icon>mdi-information</v-icon>关于主题</v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item @click="changeTheme">
+              <v-list-item-title
+                ><v-icon>mdi-tshirt-v</v-icon>切换主题</v-list-item-title
               >
             </v-list-item>
           </v-list>
@@ -110,7 +116,7 @@
         <router-view :books="books"></router-view>
       </div>
     </v-main>
-
+    <!-- 关于 -->
     <v-snackbar v-model="snackbar">
       {{ text }}
 
@@ -128,10 +134,16 @@
           <v-card-text>
             <div></div>
             <p class="text-h4 text--primary">EPUBium material design 主题包</p>
-            <p>by SwetyCore <a href="https://github.com/SwetyCore">访问他的主页</a></p>
+            <p>
+              by SwetyCore
+              <a href="https://github.com/SwetyCore">访问他的主页</a>
+            </p>
             <div class="text--primary">
               此主题基于 <a href="https://vuetify.cn/zh-Hans/">Vuetify</a>制作。
-              主题仓库地址 ：<a href="https://github.com/SwetyCore/EPUBium-Theme-based-on-Vuetify">SwetyCore/EPUBium-Theme-based-on-Vuetify</a>
+              主题仓库地址 ：<a
+                href="https://github.com/SwetyCore/EPUBium-Theme-based-on-Vuetify"
+                >SwetyCore/EPUBium-Theme-based-on-Vuetify</a
+              >
               喜欢就点个 Star 吧！
             </div>
           </v-card-text>
@@ -196,6 +208,9 @@ export default {
         height:
           document.body.clientHeight - this.$vuetify.application.top + "px",
       };
+    },
+    changeTheme() {
+      axios.get("/api/respack").then().catch();
     },
     getfolders() {
       //[{"id":-1,"UUID":"c7e82e3a1ceca76898c7aae3ca595c48","type":1,"parentUUID":"","displayName":"新建文件夹","path":".\\新建文件夹","lastOpenTime":1645524082447}]

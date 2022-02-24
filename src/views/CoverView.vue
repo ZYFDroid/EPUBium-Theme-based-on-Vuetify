@@ -1,7 +1,7 @@
 <template>
   <div class="coverview">
     <v-container fluid>
-      <v-row dense>
+      <v-row dense class="d-flex justify-center">
         <v-col v-for="book in books" :key="book">
           <book-item
             :uuid="book.UUID"

@@ -9,7 +9,7 @@
       @click="readbook(uuid)"
     >
       <!-- <v-spacer></v-spacer>{{ name }}<v-spacer></v-spacer> -->
-      <v-card-title v-text="name"></v-card-title
+      <v-card-title v-text="name" class="caption "></v-card-title
     ></v-img>
     <v-divider></v-divider>
     <v-card-actions>

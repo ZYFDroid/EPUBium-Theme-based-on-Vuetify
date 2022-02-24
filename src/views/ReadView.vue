@@ -7,9 +7,11 @@
       <div class="d-flex align-center">
         <v-btn icon @click="drawer = true"><v-icon>mdi-menu</v-icon></v-btn>
       </div>
-      <v-col :cols="2">
-        <div class="text-h5 text-no-wrap">&nbsp;{{ BookTitle }}</div>
-        <div class="text-subtitle-2">
+      <v-col :cols="2" style="min-width: 300px;">
+        <!-- <div class="text-h5 text-no-wrap text-truncate" style="display: block">&nbsp;{{ BookTitle }}</div>
+        <div class="text-subtitle-2 text-no-wrap text-truncate" style="display: block"> -->
+          <div class="text-h5 text-no-wrap" style="">&nbsp;{{ BookTitle }}</div>
+        <div class="text-subtitle-2 text-no-wrap" style="">
           &nbsp;{{ "[" + locationPage + "]" + locationChapter }}
         </div>
       </v-col>
@@ -124,18 +126,31 @@
     </v-snackbar>
     <!-- 字体大小对话框 -->
     <v-row justify="center">
-      <v-dialog v-model="dialogFontsize" scrollable max-width="300px">
+      <v-dialog v-model="dialogFontsize" scrollable max-width="360px">
         <v-card>
           <v-card-title>字体大小选择</v-card-title>
           <v-divider></v-divider>
-          <v-card-text style="height: 300px">
-            <v-radio-group v-model="Fontsize" column>
+          <v-card-text style="height: 180px">
+            <!-- <v-radio-group v-model="Fontsize" column>
               <v-radio label="100%" value="15"></v-radio>
               <v-radio label="125%" value="19"></v-radio>
               <v-radio label="150%" value="22.5"></v-radio>
               <v-radio label="175%" value="26"></v-radio>
               <v-radio label="200%" value="30"></v-radio>
-            </v-radio-group>
+            </v-radio-group> -->
+            <div style="height:60px"></div>
+            <v-container
+              ><v-slider
+                v-model="Fontsize"
+                :tick-labels="ticksLabels"
+                :max="31"
+                :min="15"
+                step="4"
+                ticks="always"
+                tick-size="4"
+                thumb-label="always"
+              ></v-slider
+            ></v-container>
           </v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
@@ -191,10 +206,11 @@ export default {
   props: ["uuid"],
   data() {
     return {
+      ticksLabels: ["小", "", "", "", "大"],
       snackbar: false,
       text: "",
       autoHeight: {},
-      BookTitle: "约会大作战 赤黑新章 1 - 东出佑一郎",
+      BookTitle: "",
       drawer: false,
       progressbar: false,
       // subtitle: "[1/3]",
@@ -272,7 +288,10 @@ export default {
     getHeight() {
       this.autoHeight = {
         height:
-          document.body.clientHeight - this.$vuetify.application.top-72 + "px",
+          document.body.clientHeight -
+          this.$vuetify.application.top -
+          72 +
+          "px",
         overflow: "auto",
       };
     },
@@ -308,8 +327,12 @@ export default {
         .catch((err) => {});
     },
     loadClick: function (save) {
+      try{
       subdoc.navTo(save.epubcft);
-      this.drawer = false;
+      this.drawer = false;}
+      catch{
+        this.toast("加载失败！")
+      }
     },
     setfontsize() {
       this.dialogFontsize = true;
