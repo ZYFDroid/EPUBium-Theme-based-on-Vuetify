@@ -11,22 +11,19 @@
       <div class="d-flex align-center">
         <v-btn icon @click="drawer = true"><v-icon>mdi-menu</v-icon></v-btn>
       </div>
-      <div>&nbsp;{{ menubarTitle }}</div>
-      <v-spacer></v-spacer
-      ><v-col cols="3" sm="3" md="3">
-        <v-spacer>&nbsp;</v-spacer>
+      <div class="text-h6 text-no-wrap" style="overflow: hidden; flex-grow: 1;">&nbsp;{{ menubarTitle }}</div>
+      
         <v-text-field
           label=""
           placeholder="搜索书名，作者"
-          height="100%"
           dense
+          hide-details="true"
           v-model="searchKeyword"
-          style="min-width:120px"
+          style="min-width:120px; flex-grow: 0;"
         ></v-text-field>
-      </v-col>
       <v-btn icon @click="doSearch(searchKeyword)"
-        ><v-icon>mdi-magnify</v-icon></v-btn
-      >
+        ><v-icon>mdi-magnify</v-icon>
+        </v-btn>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -82,9 +79,12 @@
         </div>
 
         <v-divider></v-divider>
+        <div class="p2">
+          <v-btn disabled text>   </v-btn>
+        </div>
       </v-list>
 
-      <div class="pa-2" style="position: fixed; bottom: 0px">
+      <div class="pa-2" style="position: fixed; width:100%; bottom: 0px; background-color: #fff;">
         <v-btn :loading="scanning" :disabled="scanning" @click="scanBook" text>
           <v-icon>mdi-feature-search</v-icon>扫描书籍</v-btn
         >
