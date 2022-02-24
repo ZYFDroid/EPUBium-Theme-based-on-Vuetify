@@ -136,12 +136,12 @@
             <p class="text-h4 text--primary">EPUBium material design 主题包</p>
             <p>
               by SwetyCore
-              <a href="https://github.com/SwetyCore">访问他的主页</a>
+              <a href="https://github.com/SwetyCore" target="_blank">访问他的主页</a>
             </p>
             <div class="text--primary">
-              此主题基于 <a href="https://vuetify.cn/zh-Hans/">Vuetify</a>制作。
+              此主题基于 <a href="https://vuetify.cn/zh-Hans/" target="_blank">Vuetify</a>制作。
               主题仓库地址 ：<a
-                href="https://github.com/SwetyCore/EPUBium-Theme-based-on-Vuetify"
+                href="https://github.com/SwetyCore/EPUBium-Theme-based-on-Vuetify" target="_blank"
                 >SwetyCore/EPUBium-Theme-based-on-Vuetify</a
               >
               喜欢就点个 Star 吧！
