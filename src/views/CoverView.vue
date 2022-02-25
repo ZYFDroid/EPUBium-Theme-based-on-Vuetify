@@ -13,7 +13,7 @@
              @click="readbook(book.UUID)"
            >
              <!-- <v-spacer></v-spacer>{{ name }}<v-spacer></v-spacer> -->
-             <v-card-title v-text="name" class="caption "></v-card-title
+             <v-card-title v-text="book.displayName" class="caption "></v-card-title
            ></v-img>
            <v-divider></v-divider>
            <v-card-actions>
@@ -21,12 +21,14 @@
              <v-btn text @click="readbook(book.UUID)">阅读</v-btn>
            </v-card-actions>
         </v-card>
+        </v-col>
       </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   components: {  },
   name: "CoverView",
@@ -36,9 +38,11 @@ export default {
   },
   methods: {
     readbook(uuid) {
+      
       this.$router.push("/read/" + uuid);
       // alert(uuid)
       // window.location.replace("/api/open/" + uuid)
+      axios.get("/api/open/" + uuid).then().catch();
     }
   },
 };
