@@ -531,6 +531,7 @@ export default {
         .get("read/" + this.uuid + "/api/bmload/1")
         .then((res) => {
           var bookmark = res.data;
+          console.log(res.data);
           subdoc.navTo(bookmark.epubcft);
           this.toast("存档已读取");
         })
